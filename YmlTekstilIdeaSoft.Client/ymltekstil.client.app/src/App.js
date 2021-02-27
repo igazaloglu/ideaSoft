@@ -1,50 +1,35 @@
 import React, { Component } from 'react';
-import Countries from 'countries-api';
 import './App.css';
-import axios from 'axios'
 import Pagination from './components/Pagination';
-import CountryCard from './components/CountryCard';
+import ProductCard from './components/ProductCard';
 
 class App extends Component {
-  state = { allCountries: [], currentCountries: [], currentPage: null, totalPages: null }
+
+  state = { allProducts: [], currentProducts: [], currentPage: null, totalPages: null }
 
   componentDidMount() {
-    const { data: allCountries = [] } = Countries.findAll();
-    this.setState({ allCountries });
+    fetch('https://localhost:5001/api/products')
+    .then(res => res.json())
+    .then((data) => {
+      this.setState({ allProducts: data })
+    })
+    .catch(console.log)
   }
-
   onPageChanged = data => {
-    const { allCountries } = this.state;
+    const { allProducts } = this.state;
     const { currentPage, totalPages, pageLimit } = data;
     const offset = (currentPage - 1) * pageLimit;
-    const currentCountries = allCountries.slice(offset, offset + pageLimit);
+    const currentProducts = allProducts.slice(offset, offset + pageLimit);
 
-    this.setState({ currentPage, currentCountries, totalPages });
+    this.setState({ currentPage, currentProducts, totalPages });
   }
 
-  getProducts() {
-    axios('http://localhost:5000/products')
-      .then(response => {
-        const artists = response.data;
-        const posts = [];
-        for (const artist of artists) {
-          const { albums, ...rest } = artist;
-          for (const album of albums) {
-            posts.push({ ...rest, ...album });
-          }
-        };
-
-      return posts;
-
-      })
-      .catch(error => this.setState({ error, isLoading: false }));
-  }
-
+  
   render() {
-    const { allCountries, currentCountries, currentPage, totalPages } = this.state;
-    const totalCountries = allCountries.length;
+    const { allProducts, currentProducts, currentPage, totalPages } = this.state;
+    const totalProducts = allProducts.length;
 
-    if (totalCountries === 0) return null;
+    if (totalProducts === 0) return null;
 
     const headerClass = ['text-dark py-2 pr-4 m-0', currentPage ? 'border-gray border-right' : ''].join(' ').trim();
 
@@ -54,7 +39,7 @@ class App extends Component {
           <div className="w-100 px-4 py-5 d-flex flex-row flex-wrap align-items-center justify-content-between">
             <div className="d-flex flex-row align-items-center">
               <h2 className={headerClass}>
-                <strong className="text-secondary">{totalCountries}</strong> Countries
+                <strong className="text-secondary">{totalProducts}</strong> Products
               </h2>
               {currentPage && (
                 <span className="current-page d-inline-block h-100 pl-4 text-secondary">
@@ -63,10 +48,10 @@ class App extends Component {
               )}
             </div>
             <div className="d-flex flex-row py-4 align-items-center">
-              <Pagination totalRecords={totalCountries} pageLimit={18} pageNeighbours={1} onPageChanged={this.onPageChanged} />
+              <Pagination totalRecords={totalProducts} pageLimit={18} pageNeighbours={1} onPageChanged={this.onPageChanged} />
             </div>
           </div>
-          {currentCountries.map(country => <CountryCard key={country.cca3} country={country} />)}
+          {currentProducts.map(product => <ProductCard key={product.id} product={product} />)}
         </div>
       </div>
     );
