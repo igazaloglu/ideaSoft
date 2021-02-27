@@ -1,0 +1,17 @@
+C:\Users\ibrah\OneDrive\Masaüstü\Idea\Ymltekstil.IdeaSoft.Client\Ymltekstil.IdeaSoft.Client\bin\Debug\netcoreapp2.2\appsettings.Development.json
+C:\Users\ibrah\OneDrive\Masaüstü\Idea\Ymltekstil.IdeaSoft.Client\Ymltekstil.IdeaSoft.Client\bin\Debug\netcoreapp2.2\appsettings.json
+C:\Users\ibrah\OneDrive\Masaüstü\Idea\Ymltekstil.IdeaSoft.Client\Ymltekstil.IdeaSoft.Client\bin\Debug\netcoreapp2.2\Ymltekstil.IdeaSoft.Client.deps.json
+C:\Users\ibrah\OneDrive\Masaüstü\Idea\Ymltekstil.IdeaSoft.Client\Ymltekstil.IdeaSoft.Client\bin\Debug\netcoreapp2.2\Ymltekstil.IdeaSoft.Client.runtimeconfig.json
+C:\Users\ibrah\OneDrive\Masaüstü\Idea\Ymltekstil.IdeaSoft.Client\Ymltekstil.IdeaSoft.Client\bin\Debug\netcoreapp2.2\Ymltekstil.IdeaSoft.Client.runtimeconfig.dev.json
+C:\Users\ibrah\OneDrive\Masaüstü\Idea\Ymltekstil.IdeaSoft.Client\Ymltekstil.IdeaSoft.Client\bin\Debug\netcoreapp2.2\Ymltekstil.IdeaSoft.Client.dll
+C:\Users\ibrah\OneDrive\Masaüstü\Idea\Ymltekstil.IdeaSoft.Client\Ymltekstil.IdeaSoft.Client\bin\Debug\netcoreapp2.2\Ymltekstil.IdeaSoft.Client.pdb
+C:\Users\ibrah\OneDrive\Masaüstü\Idea\Ymltekstil.IdeaSoft.Client\Ymltekstil.IdeaSoft.Client\obj\Debug\netcoreapp2.2\Ymltekstil.IdeaSoft.Client.csprojAssemblyReference.cache
+C:\Users\ibrah\OneDrive\Masaüstü\Idea\Ymltekstil.IdeaSoft.Client\Ymltekstil.IdeaSoft.Client\obj\Debug\netcoreapp2.2\Ymltekstil.IdeaSoft.Client.AssemblyInfoInputs.cache
+C:\Users\ibrah\OneDrive\Masaüstü\Idea\Ymltekstil.IdeaSoft.Client\Ymltekstil.IdeaSoft.Client\obj\Debug\netcoreapp2.2\Ymltekstil.IdeaSoft.Client.AssemblyInfo.cs
+C:\Users\ibrah\OneDrive\Masaüstü\Idea\Ymltekstil.IdeaSoft.Client\Ymltekstil.IdeaSoft.Client\obj\Debug\netcoreapp2.2\Ymltekstil.IdeaSoft.Client.csproj.CoreCompileInputs.cache
+C:\Users\ibrah\OneDrive\Masaüstü\Idea\Ymltekstil.IdeaSoft.Client\Ymltekstil.IdeaSoft.Client\obj\Debug\netcoreapp2.2\Ymltekstil.IdeaSoft.Client.RazorAssemblyInfo.cache
+C:\Users\ibrah\OneDrive\Masaüstü\Idea\Ymltekstil.IdeaSoft.Client\Ymltekstil.IdeaSoft.Client\obj\Debug\netcoreapp2.2\Ymltekstil.IdeaSoft.Client.RazorAssemblyInfo.cs
+C:\Users\ibrah\OneDrive\Masaüstü\Idea\Ymltekstil.IdeaSoft.Client\Ymltekstil.IdeaSoft.Client\obj\Debug\netcoreapp2.2\Ymltekstil.IdeaSoft.Client.RazorTargetAssemblyInfo.cache
+C:\Users\ibrah\OneDrive\Masaüstü\Idea\Ymltekstil.IdeaSoft.Client\Ymltekstil.IdeaSoft.Client\obj\Debug\netcoreapp2.2\Ymltekstil.IdeaSoft.Client.dll
+C:\Users\ibrah\OneDrive\Masaüstü\Idea\Ymltekstil.IdeaSoft.Client\Ymltekstil.IdeaSoft.Client\obj\Debug\netcoreapp2.2\Ymltekstil.IdeaSoft.Client.pdb
+C:\Users\ibrah\OneDrive\Masaüstü\Idea\Ymltekstil.IdeaSoft.Client\Ymltekstil.IdeaSoft.Client\obj\Debug\netcoreapp2.2\Ymltekstil.IdeaSoft.Client.genruntimeconfig.cache
