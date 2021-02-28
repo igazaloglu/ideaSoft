@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Ymltekstil.IdeaSoft.Server.Base;
 using Ymltekstil.IdeaSoft.Server.Interfaces;
+using Ymltekstil.IdeaSoft.Server.Models;
 using Ymltekstil.IdeaSoft.Server.Models.Idea;
 
 namespace Ymltekstil.IdeaSoft.Server.Controllers
@@ -14,7 +16,7 @@ namespace Ymltekstil.IdeaSoft.Server.Controllers
         private IIdeaSoftClient _ideaSoftClient;
 
 
-        public ProductsController(IIdeaSoftClient ideaSoftClient)      
+        public ProductsController(IIdeaSoftClient ideaSoftClient)
         {
             _ideaSoftClient = ideaSoftClient;
         }
@@ -24,14 +26,27 @@ namespace Ymltekstil.IdeaSoft.Server.Controllers
         {
             HttpContext.Request.Headers.TryGetValue("access_token", out var token);
 
-            if(string.IsNullOrEmpty(token))
+            if (string.IsNullOrEmpty(token))
             {
                 return BadRequest("No access_token key found in headers");
             }
 
             _ideaSoftClient.Authorize(token);
 
-            var result = await _ideaSoftClient.GetProducts();
+            var ideaProducts = await _ideaSoftClient.GetProducts();
+
+            var result = ideaProducts
+                .Where(p => p.Parent == null)
+                .Select(p =>
+                {
+                    var variants = ideaProducts.Where(product => product.Parent != null && product.Parent.Id == p.Id);
+
+                    return new YmlProduct
+                    {
+                        MainProduct = p,
+                        ProductVariants = variants
+                    };
+                });
 
             return Ok(result);
         }

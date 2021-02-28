@@ -26,7 +26,7 @@ class Products extends Component {
   
       this.setState({ currentPage, currentProducts, totalPages });
     }
-  
+ 
     
     render() {
       const { allProducts, currentProducts, currentPage, totalPages } = this.state;
@@ -54,7 +54,7 @@ class Products extends Component {
                 <Pagination totalRecords={totalProducts} pageLimit={18} pageNeighbours={1} onPageChanged={this.onPageChanged} />
               </div>
             </div>
-            {currentProducts.map(product => <ProductCard key={product.id} product={product} />)}
+            {currentProducts.map(product => <ProductCard key={product.mainProduct.id} product={product} />)}
           </div>
         </div>
       );
