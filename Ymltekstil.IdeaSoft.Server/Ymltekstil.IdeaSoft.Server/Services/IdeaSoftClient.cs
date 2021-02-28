@@ -11,7 +11,6 @@ namespace Ymltekstil.IdeaSoft.Server.Services
     {
         public IdeaSoftClient() : base("https://ymltekstil.myideasoft.com/api")
         {
-            Authorize("ZDhmYWI3ZGQ1YjU1MWQ0OTUzNTlhZjIyZWZhNmM5MDI0MWQwMDg4MmE5N2IxOTc4NmIzZDBhZjU1NTU1NDBkZg");
         }
 
         public async Task<IEnumerable<Product>> GetProducts()

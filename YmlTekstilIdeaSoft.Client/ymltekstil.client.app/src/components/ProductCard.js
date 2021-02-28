@@ -1,14 +1,17 @@
 import React from 'react';
+import noImage from '../assets/no-image.png'
 
 const ProductCard = props => {
   const {
-    image = {}, id = {}, name = {}
+    image = {}, id = {}, sku = {}, name = {}
   } = props.product || {};
 
-  const imagePath = require('../assets/no-image.png');
+  let imagePath = noImage;
 
-
-  // http://st2.myideasoft.com/idea/hn/38/myassets/products/${id}/${props.product.images[0]?.filename}_min.jpeg
+  if(props.product.images.length > 0)
+  {
+    imagePath = `http://st2.myideasoft.com/idea/hn/38/myassets/products/${id}/${props.product.images[0]?.filename}_min.jpeg`
+  }
 
   return (
     <div className="col-sm-6 col-md-4 product-card">
@@ -18,7 +21,7 @@ const ProductCard = props => {
         </div>
         <div className="px-3">
           <span className="product-name text-dark d-block font-weight-bold">{ name }</span>
-          <span className="product-region text-secondary text-uppercase">{ id }</span>
+          <span className="product-region text-secondary text-uppercase">{ sku }</span>
         </div>
       </div>
     </div>

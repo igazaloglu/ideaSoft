@@ -22,6 +22,15 @@ namespace Ymltekstil.IdeaSoft.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
+            HttpContext.Request.Headers.TryGetValue("access_token", out var token);
+
+            if(string.IsNullOrEmpty(token))
+            {
+                return BadRequest("No access_token key found in headers");
+            }
+
+            _ideaSoftClient.Authorize(token);
+
             var result = await _ideaSoftClient.GetProducts();
 
             return Ok(result);
