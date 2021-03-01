@@ -23,10 +23,9 @@ class ProductCard extends Component {
     this.sizes = []; // create an empty array
     this.colors = []; // create an empty array
     this.sizeColorMap = [];
+    this.variants = props.product.productVariants;
 
-    var variants = props.product.productVariants;
-
-    variants.map(v => {
+    this.variants.map(v => {
       let s = v.name.split("-")[1];
       let c = v.name.split("-")[0]
 
@@ -37,7 +36,7 @@ class ProductCard extends Component {
 
     this.sizes = [... new Set(this.sizes)];
     this.selectedSize = this.sizes[0];
-    this.selectedColor = null;
+    this.sizeUpdated(this.selectedSize);
   }
 
   sizeUpdated = (newSize) =>   {
@@ -49,6 +48,11 @@ class ProductCard extends Component {
   colorUpdated = (newColor) =>   {
     this.selectedColor = newColor
     this.forceUpdate()
+  }
+
+  addToCart = () => { 
+      let selectedProduct = this.variants.filter(v => v.name.trim() === `${this.selectedColor}-${this.selectedSize}`);
+      // this.props.cart.addItem(selectedProduct)
   }
 
   render() {
@@ -73,7 +77,7 @@ class ProductCard extends Component {
                           {this.sizes.map(s => <button className={s === this.selectedSize ? "btn-primary" : "btn-secondary"} 
                                                        onClick={() => this.sizeUpdated(s)}>{s}</button>)}
                         </div>
-                        <div className="row">
+                        <div className="row top-buffer">
                           {this.colors.map(c => <button className={c === this.selectedColor ? "btn-primary" : "btn-secondary"}
                                                         onClick={() => this.colorUpdated(c)}>{c}</button>)}
                         </div>
@@ -81,7 +85,7 @@ class ProductCard extends Component {
                     </div>
                     <div className="row">
                       <div className="col">
-                        <Button className="btn-primary" onClick={() => { alert('do stuff') }}>Sepete Ekle</Button>
+                        <Button className="btn-primary" onClick={() => this.addToCart() }>Sepete Ekle</Button>
                       </div>
                     </div>
                   </div>
