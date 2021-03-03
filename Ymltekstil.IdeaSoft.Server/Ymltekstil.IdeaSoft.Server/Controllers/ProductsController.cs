@@ -13,27 +13,16 @@ namespace Ymltekstil.IdeaSoft.Server.Controllers
     [ApiController]
     public class ProductsController : ApiController
     {
-        private IIdeaSoftClient _ideaSoftClient;
-
-
-        public ProductsController(IIdeaSoftClient ideaSoftClient)
+        public ProductsController(IIdeaSoftClient ideaSoftClient, IDbSettingsService dbSettingsService) : base(dbSettingsService, ideaSoftClient)
         {
-            _ideaSoftClient = ideaSoftClient;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<YmlProduct>>> GetProducts()
         {
-            HttpContext.Request.Headers.TryGetValue("access_token", out var token);
+            await Authorize();
 
-            if (string.IsNullOrEmpty(token))
-            {
-                return BadRequest("No access_token key found in headers");
-            }
-
-            _ideaSoftClient.Authorize(token);
-
-            var ideaProducts = await _ideaSoftClient.GetProducts();
+            var ideaProducts = await IdeaSoftClient.GetProducts();
 
             var result = ideaProducts
                 .Where(p => p.Parent == null)
@@ -41,10 +30,42 @@ namespace Ymltekstil.IdeaSoft.Server.Controllers
                 {
                     var variants = ideaProducts.Where(product => product.Parent != null && product.Parent.Id == p.Id);
 
+                    var colorsAndSizes = variants.Select(v => v.Name).Select(x => x.Split("-"));
+                    var colors = colorsAndSizes.Select(cs => cs.First().Trim()).Distinct();
+                    var sizes = colorsAndSizes.Select(cs => cs.Last().Trim()).Distinct();
+
+                    var imageMap = new Dictionary<string, Dictionary<string, IEnumerable<ProductImage>>>();
+
+                    foreach(var color in colors)
+                    {
+                        foreach(var size in sizes)
+                        {
+                            var images = variants.Where(v => v.Name.Trim() == $"{color}-{size}").SelectMany(v => v.Images).ToList();
+                            var sizeImagePairs = new Dictionary<string, IEnumerable<ProductImage>>();
+
+                            sizeImagePairs.Add(size, images);
+
+                            if(images.Count > 0)
+                            {
+                                if (imageMap.ContainsKey(color))
+                                {
+                                    imageMap[color].Add(size, images);
+                                }
+                                else
+                                {
+                                    imageMap.Add(color, sizeImagePairs);
+                                }
+                            }
+                        }
+                    }
+
                     return new YmlProduct
                     {
                         MainProduct = p,
-                        ProductVariants = variants
+                        ProductVariants = variants,
+                        Colors = colors.ToList(),
+                        Sizes = sizes.ToList(),
+                        ImageMap = imageMap
                     };
                 });
 

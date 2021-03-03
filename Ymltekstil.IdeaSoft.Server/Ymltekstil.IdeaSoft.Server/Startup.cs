@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Ymltekstil.IdeaSoft.Server.Interfaces;
+using Ymltekstil.IdeaSoft.Server.Models;
 using Ymltekstil.IdeaSoft.Server.Services;
 
 namespace Ymltekstil.IdeaSoft.Server
@@ -27,9 +21,14 @@ namespace Ymltekstil.IdeaSoft.Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc();
+            
             services.AddTransient<IIdeaSoftClient, IdeaSoftClient>();
+            services.AddTransient<IDbSettingsService, DbSettingsService>();
+
             services.AddCors();
+
+            services.AddOptions<Settings>().Bind(Configuration.GetSection("Settings"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

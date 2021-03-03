@@ -7,5 +7,9 @@ namespace Ymltekstil.IdeaSoft.Server.Models
     {
         public Product MainProduct { get; set; }
         public IEnumerable<Product>  ProductVariants { get; set; }
+        public List<string> Colors { get; set; }
+        public List<string> Sizes { get; set; }
+
+        public new Dictionary<string, Dictionary<string, IEnumerable<ProductImage>>> ImageMap { get; set; }
     }
 }
