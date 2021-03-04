@@ -9,7 +9,7 @@ namespace Ymltekstil.IdeaSoft.Server.Database
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-            optionsBuilder.UseSqlServer("");
+            optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=yml;Integrated Security=True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
