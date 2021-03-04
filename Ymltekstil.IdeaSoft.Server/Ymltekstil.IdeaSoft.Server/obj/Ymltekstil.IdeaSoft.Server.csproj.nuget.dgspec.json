@@ -56,11 +56,7 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[2.2.2, )"
-            },
-            "Microsoft.EntityFrameworkCore.Sqlite": {
-              "target": "Package",
-              "version": "[2.2.2, )"
+              "version": "[2.2.6, )"
             },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
