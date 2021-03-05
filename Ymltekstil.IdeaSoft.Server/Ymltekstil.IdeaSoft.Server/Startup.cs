@@ -38,7 +38,6 @@ namespace Ymltekstil.IdeaSoft.Server
         {
             using (var context = new AppDbContext())
             {
-                context.Database.EnsureDeleted();
                 context.Database.Migrate();
             }
 

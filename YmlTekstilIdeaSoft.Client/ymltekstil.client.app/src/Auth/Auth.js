@@ -29,6 +29,7 @@ export default class Auth {
             })
             .then(function (parsedData) {
                 localStorage.setItem("access_token", parsedData.access_token);
+                localStorage.setItem("refresh_token", parsedData.refresh_token);
             })
             .catch(console.log)
 
